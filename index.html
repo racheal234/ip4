@@ -12,7 +12,7 @@
 <body>
     <section1>
         <div class="jumbotron">
-            <h1>PIG DICE</h1>
+            <h1>PIG 96DICE</h1>
         </div>
     </section1>
     <section2>
@@ -56,7 +56,7 @@
             <input id="player1" type="text">
             <label for="player2">Player2:</label>
             <input id="player2" type="text">
-            <button type="submit" id="btn"><span class="click">Play</span></button>
+            <button type="submit" id="btn">Play</button>
         </form>
         </div>
        </div>
@@ -64,8 +64,8 @@
     <section4>
        <div class="container well" id="players-showing">
            <div class="row">
-           <div class="col-md-6">
-               <h3>Player 1: <span class="Player1name"></span></h3>
+           <div class="col-md-6" id="player2-console">
+               <h3 class="Player1name">Player 1:</h3>
                <div class="score">
                   <h6>SCORES</h6>
                   <p>DieRoll: <span class="die-roll1"></span> </p>
@@ -75,7 +75,7 @@
                <button type="button" class="roll1">Roll</button>
                <button class="hold1" type="button">Hold</button>
            </div>
-           <div class="col-md-6">
+           <div class="col-md-6" id="player2-console">
              <div id="player2-score">
               <h3>Player 2: <span class="Player2name"></span></h3>
                <div class="score">
@@ -92,25 +92,23 @@
        </div>
     </section4>
 <script>
+var player1 = new Player(p1Name, 0, 0);
+var player2 = new Player(p2Name, 0, 0);
 
 var player1Name = $("#player1").val();
+console.log(player1Name);
 var player2Name = $("#player2").val();
 
-var p1Name = parseInt(player1Name );
-var p2Name = parseInt(player2Name );
+var p1Name = player1.Name;
+var p2Name = player2.Name;
 
-$("form").submit(function (event) {
+$("#btn").submit(function (event) {
     event.preventDefault();
     //create instances of the object
-    player1 = new Player(p1Name, 1, 0);
-    player2 = new Player(p2Name, 0, 0);
-    //Display the name of the users
+//Display the name of the users
 
-    $(".Player1name").text(player1.turnAmmount);
-    $(".Player2name").text(player2.turnAmmount);
-
-    Clearfield();
-
+    $(".Player1name").text(p1Name);
+    $(".Player2name").text(p2Name);
 
 });
 $(".roll1").click(function (event) {

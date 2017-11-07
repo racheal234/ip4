@@ -15,10 +15,10 @@ open index.html  and run it in your favorite browser.
 
 
 ## Known Bugs
-none yet
+none yet.
 
 ## Technologies Used
-HTML, CSS, JAVASCRIPT
+HTML, CSS, JAVASCRIPT.
 
 ## Support and contact details
 For questions, concerns, or suggestions please email rachmbugua@gmail.com

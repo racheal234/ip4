@@ -11,7 +11,6 @@ Player.prototype.roll = function () {
     if (ranPigAmmount === 1) {
         this.turnAmmount = 0;
         // alert("Ooops! You rolled a 1. It's  " + this.Name +"'s turn");
-        dieRanVal= 0;
     } else {
         this.turnAmmount = this.turnAmmount + ranPigAmmount;
         //        console.log(this.turnScore)
@@ -20,8 +19,8 @@ Player.prototype.roll = function () {
 }
 
 Player.prototype.ammount = function () {
-    this.totalAmmount += this.turnAmmount
-    this.turnAmmount = 0
+    this.totalAmmount += this.turnAmmount;
+    this.turnAmmount = 0;
 
     if(this.totalAmmount >= 100){
         alert("GAme Over");
@@ -34,3 +33,4 @@ function Clearfield() {
     $("#player1").val("");
     $("#player2").val("");
 }
+// user interface
