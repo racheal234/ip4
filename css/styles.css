@@ -1,5 +1,45 @@
+
 body {
-	background-image: url(../images/pig.jpg);
-	background-size: cover;
-	background-position: center;
+  background-image: url(../images/pig.jpg);
+}
+
+h1 {
+  background-color: pink;
+  color: black;
+  font-size: 4em;
+  /*line-height: 4em;*/
+  text-align: center;
+  font-family: 'Pacifico', cursive;
+  border-radius: 10px;
+}
+
+h3 {
+  background-color: pink;
+  color: black;
+  border-radius: 6px;
+  padding: 3px;
+  padding-left: 15px;
+}
+
+#info h4 {
+  text-align: center;
+}
+
+#listPlayerScores h3 {
+  background-color: pink;
+}
+
+button{
+  margin: 6px;
+}
+
+.btn-default {
+  background-color: pink;
+  color: blue;
+}
+
+#displayDie {
+  border: solid 5px black;
+  display: block;
+  margin: auto;
 }
