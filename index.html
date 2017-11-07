@@ -1,56 +1,155 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all">
-        <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
-	      <link href="css/styles.css" rel="stylesheet" type="text/css">
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="css/styles.css" type="text/css">
+    <script src="js/jquery-3.2.1.js"></script>
+    <script src="js/scripts.js"></script>
+    <title>Pig Dice</title>
+</head>
 
-        <link href="https://fonts.googleapis.com/css?family=Lato:100,300,600" rel="stylesheet" type="text/css">
-        <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css">
-        <link type="text/css" rel="stylesheet" href="style.css"
-      </head>
-      <body>
-        <div class="container">
-          <h1>Play Pig-Dice</h1>
-          <div class="row">
-            <div class="col-xs-4">
-              <h3 id="rules">Rules of Play:</h3>
-              <ul>
-                <li>A player rolls the dice</li>
-                <li>If the player gets "1" then their turn is over and they score 0.</li>
-                <li>If the player does not get "1" then the die amount is added to their turn score and they can roll again or hold.</li>
-                <li>When the player holds, their turn amount is added to their total score.</li>
-                <li>Repeat until one player has 100 points ore more.</li>
-              </ul>
-            </div>
-            <div class="col-xs-4">
-              <div id="info">
-                <h3>Playing Area</h3>
-                <h4 id="currentPlayer">Current Player Name</h4>
-                <h4 id="currentScore">Current Turn Score</h4>
-              </div>
-              <div id="displayDie"><img src='img/roll.png' class='img-responsive'></div>
-              <p>
-                <button class="btn btn-default pull-right" id="roll" disabled>Roll Again</button>
-                <button class="btn btn-default pull-left" id="hold" disabled>Hold</button>
-              </p>
-            </div>
-            <div class="col-xs-4">
-              <h3 id="players">Players</h3>
-              <ul id="listPlayers">
-                <!-- players are added dynamically -->
-              </ul>
-              <div id="listPlayerScores">
-                <!-- players and scores are added dynamically -->
-              </div>
-              <h4>Add Player:</h4>
-              <input type="text" id="playerName"><br>
-              <button class="btn btn-default" id="addPlayer">Add Player</button>
-              <button class="btn btn-default" id="playGame" disabled>(re)Start Game</button>
-            </div>
-          </div>
+<body>
+    <section1>
+        <div class="jumbotron">
+            <h1>PIG DICE</h1>
         </div>
-      <script src="js/jquery-3.2.1.js"></script>
-      <script src="js/bootstrap.js"></script>
-      <script src="js/scripts.js"></script>
+    </section1>
+    <section2>
+            <h2>RULES</h2>
+
+
+            <h4>Objective</h4>
+            <p>
+                The objective of Pig Dice Game is to score 100 points before the opponent(s) do(es). The Pig game is played with a single six-sided die.
+            </p>
+            <h4>
+                <br /> Gameplay
+            </h4>
+
+
+            <p>
+                In each turn a player rolls a die repeatedly until either a 1 is rolled or player decides to hold and pass on the turn to its opponent.
+            </p>
+            <p>
+                The number player rolls is added to a temporary score. If the player rolls a 1, they lose their temporary score and turn is passed to their opponent.
+            </p>
+            <p>
+                If player gets any other number, they can decide to continue and roll the die.
+            </p>
+            <p>
+                If player decides to hold, then their turn total (temporary score) is added to the overall score.
+            </p>
+            <p>
+                The first player to score 100 points wins the game.
+            </p>
+            </div>
+
+
+        </div>
+    </section2>
+    <section3>
+       <div id="players-hiding">
+        <div class="players">
+            <form>
+            <label for="player">Player1:</label>
+            <input id="player1" type="text">
+            <label for="player2">Player2:</label>
+            <input id="player2" type="text">
+            <button type="submit" id="btn"><span class="click">Play</span></button>
+        </form>
+        </div>
+       </div>
+    </section3>
+    <section4>
+       <div class="container well" id="players-showing">
+           <div class="row">
+           <div class="col-md-6">
+               <h3>Player 1: <span class="Player1name"></span></h3>
+               <div class="score">
+                  <h6>SCORES</h6>
+                  <p>DieRoll: <span class="die-roll1"></span> </p>
+                   <p>turnAmmount: <span class="turn-score"></span> </p>
+                   <p>totalAmmount: <span class="total-score"></span> </p>
+               </div>
+               <button type="button" class="roll1">Roll</button>
+               <button class="hold1" type="button">Hold</button>
+           </div>
+           <div class="col-md-6">
+             <div id="player2-score">
+              <h3>Player 2: <span class="Player2name"></span></h3>
+               <div class="score">
+                  <h6>SCORES</h6>
+                  <p>DieRoll: <span class="die-roll2"></span> </p>
+                   <p>TurnAmmount: <span class="turn-score2"></span> </p>
+                   <p>totalAmmount: <span class="total"></span> </p>
+               </div>
+             </div>
+               <button type="button" class="roll2">Roll</button>
+               <button class="hold2" type="button">Hold</button>
+           </div>
+       </div>
+       </div>
+    </section4>
+<script>
+
+var player1Name = $("#player1").val();
+var player2Name = $("#player2").val();
+
+var p1Name = parseInt(player1Name );
+var p2Name = parseInt(player2Name );
+
+$("form").submit(function (event) {
+    event.preventDefault();
+    //create instances of the object
+    player1 = new Player(p1Name, 1, 0);
+    player2 = new Player(p2Name, 0, 0);
+    //Display the name of the users
+
+    $(".Player1name").text(player1.turnAmmount);
+    $(".Player2name").text(player2.turnAmmount);
+
+    Clearfield();
+
+
+});
+$(".roll1").click(function (event) {
+    event.preventDefault();
+   // $("#player2-score").hide();
+    var player1Roll = player1.roll();
+    $(".turn-").text(player1.turnAmmount);
+    $(".die-roll1").text(player1Roll);
+    //console.log(player1.turnScore)
+
+
+});
+$(".hold1").click(function(event){
+    event.preventDefault();
+    player1.score();
+    $(".total-").text(player1.totalAmmount);
+    $(".die-roll").text("")
+    $(".turn-amount").text("");
+});
+//player 2 buttons
+$(".roll2").click(function (event) {
+    event.preventDefault();
+   // $("#player2-score").hide();
+    var player2Roll = player2.roll();
+
+    $(".turn-ammount").text(player2.turnAmmount);
+    $(".die-roll2").text(player2Roll);
+    console.log(player2.turnAmmount);
+
+
+});
+$(".hold2").click(function(event){
+    event.preventDefault();
+    player2.score();
+    $(".total").text(player2.totalScore);
+    $(".die-roll2").text("");
+    $(".turn-ammount").text("");
+});
+
+</script>
+</body>
+</html>
